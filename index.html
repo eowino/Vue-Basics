@@ -19,32 +19,38 @@
                 <form @submit="handleSubmit">
                     <p v-if="invalid" class="error">{{errorMessage}}</p>
                     <div class="search">
-                        <input type="number" name="search" placeholder="e.g. 5" :max="request.upperLimit" :min="request.lowerLimit">
+                        <input type="number" 
+                               name="search" placeholder="e.g. 5" required
+                               :max="request.upperLimit" :min="request.lowerLimit" 
+                               @keypress-enter="handleSubmit" v-model="searchValue">
                         <button type="submit">Fetch New Users</button>
                     </div>
                 </form>
             </div>
             <ul id="user" class="users" v-if="hasUsers">
                 <li v-for="user in users">
-                    <div class="user">
-                        <img :src="user.picture.thumbnail" alt="thumbnail" class="user__thumbnail">
-                        <div class="user__details">
-                            <p>{{ capitalise(user.name.title) }} {{ capitalise(user.name.first) }} {{ capitalise(user.name.last) }}</p>
-                            <p>
-                                <strong>Age:</strong> {{ user.dob.age }}, 
-                                <strong>DOB:</strong> {{ new Date(user.dob.date).toLocaleString() }}
-                            </p>
-                            <p><strong>Email:</strong> {{ user.email }}</p>
-                            <p><strong>Phone:</strong> {{ user.phone }}</p>
+                    <transition name="fade">
+                        <div class="user" :key="user.email">
+                            <img :src="user.picture.thumbnail" alt="thumbnail" class="user__thumbnail">
+                            <div class="user__details">
+                                <p>{{ user.name.title }} {{ capitalise(user.name.first) }} {{ capitalise(user.name.last) }}</p>
+                                <p>
+                                    <strong>Age:</strong> {{ user.dob.age }}, 
+                                    <strong>DOB:</strong> {{ new Date(user.dob.date).toLocaleString() }}
+                                </p>
+                                <p><strong>Email:</strong> {{ user.email }}</p>
+                                <p><strong>Phone:</strong> {{ user.phone }}</p>
+                            </div>
                         </div>
-                    </div>
+                    </transition>
                 </li>
             </ul>
         </div>
     </main>
 
-    <script src="https://unpkg.com/vue"></script>
+    <!-- <script src="https://unpkg.com/vue"></script> -->
     <!-- <script src="vue.js"></script> -->
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.min.js"></script>
     <script src="app.js"></script>
 </body>
 

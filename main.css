@@ -23,34 +23,34 @@ main {
   text-align: center;
 }
 .error {
-    color: red;
+  color: red;
 }
 
 .search {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .search input {
-    font-size: 0.9em;
-    height: 36px;
-    margin-right: 6px;
-    width: 18.75rem;
-    padding-left: 6px;
+  font-size: 0.9em;
+  height: 36px;
+  margin-right: 6px;
+  width: 18.75rem;
+  padding-left: 6px;
 }
 
 .search button {
-    background: #0099ff;
-    color: #fff;
-    border: 0;
-    border-radius: 2px;
-    font-size: 0.75em;
+  background: #0099ff;
+  color: #fff;
+  border: 0;
+  border-radius: 2px;
+  font-size: 0.75em;
 }
 
 .users {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .users li {
@@ -75,4 +75,12 @@ main {
   height: 80px;
   width: 80px;
   margin-right: 1em;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease-in;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }

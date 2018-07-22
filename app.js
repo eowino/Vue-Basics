@@ -1,10 +1,11 @@
 // @ts-check
 
-const app = new Vue({
+new Vue({
   el: '#app',
   data: {
     title: 'A list of users',
     users: null,
+    searchValue: '',
     request: {
       url: 'https://randomuser.me/api/?results=',
       upperLimit: 30,
@@ -26,11 +27,12 @@ const app = new Vue({
 
     handleSubmit(e) {
       e.preventDefault();
-      const value = +e.target.search.value;
+      const value = this.searchValue;
 
       if (!isNaN(value) && this.isValid(value)) {
         this.fetchData(value);
         this.invalid = false;
+        this.searchValue = '';
       } else {
         this.invalid = true;
       }
