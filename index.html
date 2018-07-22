@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Intro to Vue.js</title>
+    <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+    <link href="main.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    <main>
+        <div class="container" id="app">
+            <div class="center" id="heyVue">
+                <h1>{{title}}</h1>
+                <form @submit="handleSubmit">
+                    <p v-if="invalid" class="error">{{errorMessage}}</p>
+                    <div class="search">
+                        <input type="number" name="search" placeholder="e.g. 5" :max="request.upperLimit" :min="request.lowerLimit">
+                        <button type="submit">Fetch New Users</button>
+                    </div>
+                </form>
+            </div>
+            <ul id="user" class="users" v-if="hasUsers">
+                <li v-for="user in users">
+                    <div class="user">
+                        <img :src="user.picture.thumbnail" alt="thumbnail" class="user__thumbnail">
+                        <div class="user__details">
+                            <p>{{ capitalise(user.name.title) }} {{ capitalise(user.name.first) }} {{ capitalise(user.name.last) }}</p>
+                            <p>
+                                <strong>Age:</strong> {{ user.dob.age }}, 
+                                <strong>DOB:</strong> {{ new Date(user.dob.date).toLocaleString() }}
+                            </p>
+                            <p><strong>Email:</strong> {{ user.email }}</p>
+                            <p><strong>Phone:</strong> {{ user.phone }}</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+
+    <script src="https://unpkg.com/vue"></script>
+    <!-- <script src="vue.js"></script> -->
+    <script src="app.js"></script>
+</body>
+
+</html>
